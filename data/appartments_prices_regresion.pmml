@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2">
+  <Header copyright="me">
+    <Application name="KNIME" version="5.5.1"/>
+  </Header>
+  <DataDictionary numberOfFields="6">
+    <DataField dataType="integer" name="Square_Area" optype="continuous">
+      <Interval closure="closedClosed" leftMargin="60.0" rightMargin="199.0"/>
+    </DataField>
+    <DataField dataType="integer" name="Num_Rooms" optype="continuous">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="5.0"/>
+    </DataField>
+    <DataField dataType="integer" name="Age_of_Building" optype="continuous">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="19.0"/>
+    </DataField>
+    <DataField dataType="integer" name="Floor_Level" optype="continuous">
+      <Interval closure="closedClosed" leftMargin="1.0" rightMargin="19.0"/>
+    </DataField>
+    <DataField dataType="string" name="City" optype="categorical">
+      <Value value="Amman"/>
+      <Value value="Aqaba"/>
+      <Value value="Irbid"/>
+    </DataField>
+    <DataField dataType="double" name="Price" optype="continuous">
+      <Interval closure="closedClosed" leftMargin="15900.0" rightMargin="123550.0"/>
+    </DataField>
+  </DataDictionary>
+  <GeneralRegressionModel modelType="generalLinear" functionName="regression" algorithmName="LinearRegression" modelName="KNIME Linear Regression">
+    <MiningSchema>
+      <MiningField name="Square_Area" invalidValueTreatment="asIs"/>
+      <MiningField name="Num_Rooms" invalidValueTreatment="asIs"/>
+      <MiningField name="Age_of_Building" invalidValueTreatment="asIs"/>
+      <MiningField name="Floor_Level" invalidValueTreatment="asIs"/>
+      <MiningField name="City" invalidValueTreatment="asIs"/>
+      <MiningField name="Price" invalidValueTreatment="asIs" usageType="target"/>
+    </MiningSchema>
+    <ParameterList>
+      <Parameter name="p0" label="Intercept"/>
+      <Parameter name="p1" label="Square_Area"/>
+      <Parameter name="p2" label="Num_Rooms"/>
+      <Parameter name="p3" label="Age_of_Building"/>
+      <Parameter name="p4" label="Floor_Level"/>
+      <Parameter name="p5" label="[City=Aqaba]"/>
+      <Parameter name="p6" label="[City=Irbid]"/>
+    </ParameterList>
+    <FactorList>
+      <Predictor name="City"/>
+    </FactorList>
+    <CovariateList>
+      <Predictor name="Square_Area"/>
+      <Predictor name="Num_Rooms"/>
+      <Predictor name="Age_of_Building"/>
+      <Predictor name="Floor_Level"/>
+    </CovariateList>
+    <PPMatrix>
+      <PPCell value="1" predictorName="Square_Area" parameterName="p1"/>
+      <PPCell value="1" predictorName="Num_Rooms" parameterName="p2"/>
+      <PPCell value="1" predictorName="Age_of_Building" parameterName="p3"/>
+      <PPCell value="1" predictorName="Floor_Level" parameterName="p4"/>
+      <PPCell value="Aqaba" predictorName="City" parameterName="p5"/>
+      <PPCell value="Irbid" predictorName="City" parameterName="p6"/>
+    </PPMatrix>
+    <ParamMatrix>
+      <PCell parameterName="p0" beta="10726.240781286606" df="1"/>
+      <PCell parameterName="p1" beta="368.86545245370473" df="1"/>
+      <PCell parameterName="p2" beta="4913.140057491247" df="1"/>
+      <PCell parameterName="p3" beta="-996.4750152938198" df="1"/>
+      <PCell parameterName="p4" beta="995.6962614909099" df="1"/>
+      <PCell parameterName="p5" beta="-11610.98881849887" df="1"/>
+      <PCell parameterName="p6" beta="-19772.655081830646" df="1"/>
+    </ParamMatrix>
+  </GeneralRegressionModel>
+</PMML>
